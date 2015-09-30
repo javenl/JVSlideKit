@@ -30,7 +30,7 @@
 #pragma mark - init Method
 
 - (void)initValue {
-    self.forceCenterView = YES;
+//    self.forceCenterView = YES;
     self.itemSpace = 5;
 }
 
@@ -44,8 +44,9 @@
         self.layout.itemSize = itemSize;
     }
     self.layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    self.layout.minimumInteritemSpacing = FLT_MAX;//prevent to display 2 row
-    self.layout.minimumLineSpacing = itemSpace;
+//    self.layout.minimumInteritemSpacing = FLT_MAX;//prevent to display 2 row
+//    self.layout.minimumLineSpacing = itemSpace;
+//    self.layout.minimumLineSpacing = FLT_MAX;//prevent to display 2 row
     self.layout.headerReferenceSize = CGSizeMake(itemSpace, 0);
     self.layout.footerReferenceSize = CGSizeMake(itemSpace, 0);
     
@@ -158,7 +159,6 @@
     return index;
 }
 
-
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
@@ -233,17 +233,17 @@
     }
 }
 
-#pragma mark -
-/*
- - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
- if (indexPath.row % 2 == 0) {
- return CGSizeMake(200, 200);
- } else {
- return CGSizeMake(200, 200);
- }
- //    return CGSizeMake(200, 200);
- }
- */
+#pragma mark - UICollectionViewDelegateFlowLayout
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return self.layout.itemSize;
+//    if (indexPath.row % 2 == 0) {
+//        return CGSizeMake(50, 50);
+//    } else {
+//        return CGSizeMake(100, 100);
+//    }
+}
+
 #pragma mark - UICollectionView DataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
