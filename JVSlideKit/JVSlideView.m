@@ -7,14 +7,15 @@
 //
 
 #import "JVSlideView.h"
+#import "JVFlowLayout.h"
 
 #define MAX_COUNT INT_LEAST16_MAX
 
-@interface JVSlideView () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface JVSlideView () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, UICollectionViewDelegateJVFlowLayout>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
-@property (nonatomic, strong) UICollectionViewFlowLayout *layout;
+@property (nonatomic, strong) JVFlowLayout *flowLayout;
 
 @property (nonatomic, assign) NSUInteger itemCount;
 
@@ -39,18 +40,23 @@
 }
 
 - (void)initSubviewsWithItemSize:(CGSize)itemSize itemSpace:(NSInteger)itemSpace {
-    self.layout = [[UICollectionViewFlowLayout alloc] init];
-    if (!CGSizeEqualToSize(itemSize, CGSizeZero)) {
-        self.layout.itemSize = itemSize;
-    }
-    self.layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    self.flowLayout = [[JVFlowLayout alloc] init];
+    self.flowLayout.delegate = self;
+    self.flowLayout.itemSpace = itemSpace;
+    self.itemSize = itemSize;
+//    if (!CGSizeEqualToSize(itemSize, CGSizeZero)) {
+//        self.layout.itemSize = itemSize;
+//    }
+//    self.layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
 //    self.layout.minimumInteritemSpacing = FLT_MAX;//prevent to display 2 row
 //    self.layout.minimumLineSpacing = itemSpace;
 //    self.layout.minimumLineSpacing = FLT_MAX;//prevent to display 2 row
-    self.layout.headerReferenceSize = CGSizeMake(itemSpace, 0);
-    self.layout.footerReferenceSize = CGSizeMake(itemSpace, 0);
+//    self.layout.headerReferenceSize = CGSizeMake(itemSpace, 0);
+//    self.layout.footerReferenceSize = CGSizeMake(itemSpace, 0);
     
-    self.collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:self.layout];
+    
+    
+    self.collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:self.flowLayout];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     self.collectionView.showsVerticalScrollIndicator = NO;
@@ -60,10 +66,10 @@
     
     self.collectionView.backgroundColor = [UIColor purpleColor];
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.currentIndex = MAX_COUNT / 2;
-        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:MAX_COUNT / 2 inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
-    });
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        self.currentIndex = MAX_COUNT / 2;
+//        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:MAX_COUNT / 2 inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+//    });
 }
 
 - (instancetype)initWithItemSize:(CGSize)itemSize itemSpace:(NSInteger)itemSpace {
@@ -132,10 +138,10 @@
 #pragma mark - Helper
 
 - (CGPoint)nearestPointForOffset:(CGPoint)offset {
-    CGFloat pageWidth = self.layout.itemSize.width + self.layout.minimumLineSpacing;
+    CGFloat pageWidth = self.itemSize.width + self.flowLayout.itemSpace;
     NSInteger page = (offset.x + CGRectGetWidth(self.bounds) / 2) / pageWidth;
     if (page > 0) {
-        CGFloat pageOffset = pageWidth - ( (CGRectGetWidth(self.bounds) - pageWidth) / 2) + self.layout.minimumLineSpacing / 2;
+        CGFloat pageOffset = pageWidth - ( (CGRectGetWidth(self.bounds) - pageWidth) / 2) + self.flowLayout.itemSpace / 2;
         CGFloat targetX = pageOffset + (page - 1) * pageWidth;
         return CGPointMake(targetX, offset.y);
     } else {
@@ -223,7 +229,7 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat pageWidth = self.layout.itemSize.width + self.layout.minimumLineSpacing;
+    CGFloat pageWidth = self.itemSize.width + self.flowLayout.itemSpace;
     NSInteger page = (scrollView.contentOffset.x + CGRectGetWidth(self.bounds) / 2) / pageWidth;
     if (page != self.currentIndex) {
         self.currentIndex = page;
@@ -233,10 +239,12 @@
     }
 }
 
-#pragma mark - UICollectionViewDelegateFlowLayout
+#pragma mark - UICollectionViewDelegateJVFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return self.layout.itemSize;
+    return self.itemSize;
+//    return CGSizeMake(100, 100);
+//    return self.flowLayout.itemSize;
 //    if (indexPath.row % 2 == 0) {
 //        return CGSizeMake(50, 50);
 //    } else {
@@ -247,7 +255,8 @@
 #pragma mark - UICollectionView DataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return MAX_COUNT;
+    return self.itemCount;
+//    return MAX_COUNT;
     //    if (self.itemCount == 1) {
     //        return 1;
     //    } else {
@@ -281,18 +290,18 @@
 - (void)setItemSize:(CGSize)itemSize {
     if (!CGSizeEqualToSize(_itemSize, itemSize)) {
         _itemSize = itemSize;
-        self.layout.itemSize = itemSize;
-        [self.layout invalidateLayout];
+//        self.flowLayout.itemSize = itemSize;
+        [self.flowLayout invalidateLayout];
     }
 }
 
 - (void)setItemSpace:(CGFloat)itemSpace {
     if (_itemSpace != itemSpace) {
         _itemSpace = itemSpace;
-        self.layout.minimumLineSpacing = itemSpace;
-        self.layout.headerReferenceSize = CGSizeMake(itemSpace, 0);
-        self.layout.footerReferenceSize = CGSizeMake(itemSpace, 0);
-        [self.layout invalidateLayout];
+        self.flowLayout.itemSpace = itemSpace;
+//        self.flowLayout.headerReferenceSize = CGSizeMake(itemSpace, 0);
+//        self.flowLayout.footerReferenceSize = CGSizeMake(itemSpace, 0);
+        [self.flowLayout invalidateLayout];
     }
 }
 

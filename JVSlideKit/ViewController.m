@@ -28,7 +28,7 @@ static NSString *kIdentifier = @"SlideView";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    /*
+    
     self.slideView = [[JVSlideView alloc] initWithItemSize:CGSizeMake(150, 150) itemSpace:10];
     self.slideView.frame = CGRectMake(0, 30, CGRectGetWidth(self.view.frame), 300);
     self.slideView.delegate = self;
@@ -42,7 +42,7 @@ static NSString *kIdentifier = @"SlideView";
 //    self.titles = @[@"a", @"b"];
     
     [self.slideView reloadData];
-    */
+    
 //    NSLog(@"test %@", @(-4 % 4));
     
     
@@ -55,10 +55,11 @@ static NSString *kIdentifier = @"SlideView";
     //    self.layout.minimumLineSpacing = FLT_MAX;
 //    self.layout.headerReferenceSize = CGSizeMake(itemSpace, 0);
 //    self.layout.footerReferenceSize = CGSizeMake(itemSpace, 0);
-    
+    /*
     self.flowLayout = [[JVFlowLayout alloc] init];
     self.flowLayout.itemSpace = 10;
     self.flowLayout.delegate = self;
+    self.flowLayout.isHorizontal = YES;
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:self.flowLayout];
     self.collectionView.dataSource = self;
@@ -69,9 +70,9 @@ static NSString *kIdentifier = @"SlideView";
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:kIdentifier];
     //    self.collectionView.pagingEnabled = YES;
     [self.view addSubview:self.collectionView];
-    
+    */
 }
-
+/*
 #pragma mark - UICollectionViewDelegateJVFlowLayout
 
 //- (NSInteger)numberOfitemsWithCollectionView:(UICollectionView *)collectionView {
@@ -79,13 +80,17 @@ static NSString *kIdentifier = @"SlideView";
 //}
 
 - (CGSize)collectionView:(UICollectionView *)collectionView sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(200, 200);
+    if (indexPath.row % 2 == 0) {
+        return CGSizeMake(100, 100);
+    } else {
+        return CGSizeMake(200, 200);
+    }
 }
 
-#pragma mark - 
+#pragma mark -
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 1;
+    return 50;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -112,7 +117,7 @@ static NSString *kIdentifier = @"SlideView";
     
     return cell;
 }
-
+*/
 
 #pragma mark - SlideViewDataSource
 

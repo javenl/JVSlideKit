@@ -16,6 +16,7 @@
 		5A8066BA1BBB9576004517D7 /* JVSlideKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A8066B91BBB9576004517D7 /* JVSlideKitTests.m */; };
 		5A8066C51BBB9626004517D7 /* JVSlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A8066C41BBB9626004517D7 /* JVSlideView.m */; };
 		5A8066C81BBBD1AF004517D7 /* JVFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A8066C71BBBD1AF004517D7 /* JVFlowLayout.m */; };
+		5A8066CB1BBBF0A1004517D7 /* JVSlideLoopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A8066CA1BBBF0A1004517D7 /* JVSlideLoopView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,8 @@
 		5A8066C41BBB9626004517D7 /* JVSlideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVSlideView.m; sourceTree = "<group>"; };
 		5A8066C61BBBD1AF004517D7 /* JVFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFlowLayout.h; sourceTree = "<group>"; };
 		5A8066C71BBBD1AF004517D7 /* JVFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFlowLayout.m; sourceTree = "<group>"; };
+		5A8066C91BBBF0A1004517D7 /* JVSlideLoopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVSlideLoopView.h; sourceTree = "<group>"; };
+		5A8066CA1BBBF0A1004517D7 /* JVSlideLoopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVSlideLoopView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +102,8 @@
 				5A8066C41BBB9626004517D7 /* JVSlideView.m */,
 				5A8066C61BBBD1AF004517D7 /* JVFlowLayout.h */,
 				5A8066C71BBBD1AF004517D7 /* JVFlowLayout.m */,
+				5A8066C91BBBF0A1004517D7 /* JVSlideLoopView.h */,
+				5A8066CA1BBBF0A1004517D7 /* JVSlideLoopView.m */,
 			);
 			path = JVSlideKit;
 			sourceTree = "<group>";
@@ -232,6 +237,7 @@
 				5A8066A61BBB9575004517D7 /* ViewController.m in Sources */,
 				5A8066C81BBBD1AF004517D7 /* JVFlowLayout.m in Sources */,
 				5A8066A31BBB9575004517D7 /* AppDelegate.m in Sources */,
+				5A8066CB1BBBF0A1004517D7 /* JVSlideLoopView.m in Sources */,
 				5A8066A01BBB9575004517D7 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
