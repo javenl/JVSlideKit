@@ -33,6 +33,7 @@
 - (void)initValue {
 //    self.forceCenterView = YES;
     self.itemSpace = 5;
+//    self.collectionView.contentSize = CGSizeMake(0, CGRectGetHeight(self.bounds));
 }
 
 - (void)initSubviews {
@@ -54,8 +55,6 @@
 //    self.layout.headerReferenceSize = CGSizeMake(itemSpace, 0);
 //    self.layout.footerReferenceSize = CGSizeMake(itemSpace, 0);
     
-    
-    
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:self.flowLayout];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
@@ -65,11 +64,6 @@
     [self addSubview:self.collectionView];
     
     self.collectionView.backgroundColor = [UIColor purpleColor];
-    
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        self.currentIndex = MAX_COUNT / 2;
-//        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:MAX_COUNT / 2 inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
-//    });
 }
 
 - (instancetype)initWithItemSize:(CGSize)itemSize itemSpace:(NSInteger)itemSpace {
@@ -101,6 +95,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     self.collectionView.frame = self.bounds;
+    self.collectionView.contentInset = UIEdgeInsetsZero;
 }
 
 #pragma mark - Public Method
@@ -153,6 +148,7 @@
     if (self.itemCount == 0) {
         return 0;
     }
+    /*
     NSInteger realOffset = realIndex - MAX_COUNT / 2;
     NSInteger index = 0;
     NSInteger count = self.itemCount;
@@ -163,6 +159,8 @@
         index = self.itemCount - labs(offset);
     }
     return index;
+    */
+    return realIndex;
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -175,8 +173,14 @@
     //    velocity = CGPointMake(1, 0);
     //    scrollView.decelerationRate = 0;
 //    NSLog(@"velocity %@", NSStringFromCGPoint(velocity));
-    
+    CGFloat pageWidth = self.itemSize.width + self.flowLayout.itemSpace;
+    CGFloat pageOffset = pageWidth - ( (CGRectGetWidth(self.bounds) - pageWidth) / 2) + self.flowLayout.itemSpace / 2;
+    NSLog(@"point %@", NSStringFromCGPoint(*targetContentOffset));
+    NSLog(@"pageOffset %@", @(pageOffset));
     if (self.forceCenterView) {
+        if (targetContentOffset->x == 0 || targetContentOffset->x == (scrollView.contentSize.width - scrollView.bounds.size.width)) {
+            return;
+        }
         CGPoint targetOffset = [self nearestPointForOffset:*targetContentOffset];
         targetContentOffset->x = targetOffset.x;
         targetContentOffset->y = targetOffset.y;
@@ -215,7 +219,7 @@
      }
      }
      */
-    //    NSLog(@"point %@", NSStringFromCGPoint(targetOffset));
+//    NSLog(@"point %@", NSStringFromCGPoint(*targetContentOffset));
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
@@ -243,25 +247,12 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return self.itemSize;
-//    return CGSizeMake(100, 100);
-//    return self.flowLayout.itemSize;
-//    if (indexPath.row % 2 == 0) {
-//        return CGSizeMake(50, 50);
-//    } else {
-//        return CGSizeMake(100, 100);
-//    }
 }
 
 #pragma mark - UICollectionView DataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.itemCount;
-//    return MAX_COUNT;
-    //    if (self.itemCount == 1) {
-    //        return 1;
-    //    } else {
-    //        return MAX_COUNT;
-    //    }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

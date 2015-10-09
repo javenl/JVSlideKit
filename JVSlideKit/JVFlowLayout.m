@@ -109,4 +109,10 @@
     return totalAttribures;
 }
 
+- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return self.attributeArray[indexPath.row];
+}
+
+//- (NSLayoutAttribute *)la
+
 @end

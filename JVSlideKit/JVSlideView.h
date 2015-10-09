@@ -50,4 +50,8 @@
 
 - (void)stopAutoSlide;
 
+#pragma mark - 
+
+- (void)initSubviewsWithItemSize:(CGSize)itemSize itemSpace:(NSInteger)itemSpace;
+
 @end

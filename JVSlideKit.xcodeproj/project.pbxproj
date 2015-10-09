@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A3D6C211BC76574001931F2 /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3D6C201BC76574001931F2 /* Demo1ViewController.m */; };
+		5A3D6C241BC76580001931F2 /* Demo2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3D6C231BC76580001931F2 /* Demo2ViewController.m */; };
 		5A8066A01BBB9575004517D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A80669F1BBB9575004517D7 /* main.m */; };
 		5A8066A31BBB9575004517D7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A8066A21BBB9575004517D7 /* AppDelegate.m */; };
 		5A8066A61BBB9575004517D7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A8066A51BBB9575004517D7 /* ViewController.m */; };
@@ -30,6 +32,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5A3D6C1F1BC76574001931F2 /* Demo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1ViewController.h; sourceTree = "<group>"; };
+		5A3D6C201BC76574001931F2 /* Demo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
+		5A3D6C221BC76580001931F2 /* Demo2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo2ViewController.h; sourceTree = "<group>"; };
+		5A3D6C231BC76580001931F2 /* Demo2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo2ViewController.m; sourceTree = "<group>"; };
 		5A80669A1BBB9575004517D7 /* JVSlideKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JVSlideKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A80669E1BBB9575004517D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A80669F1BBB9575004517D7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -94,6 +100,10 @@
 				5A8066A21BBB9575004517D7 /* AppDelegate.m */,
 				5A8066A41BBB9575004517D7 /* ViewController.h */,
 				5A8066A51BBB9575004517D7 /* ViewController.m */,
+				5A3D6C1F1BC76574001931F2 /* Demo1ViewController.h */,
+				5A3D6C201BC76574001931F2 /* Demo1ViewController.m */,
+				5A3D6C221BC76580001931F2 /* Demo2ViewController.h */,
+				5A3D6C231BC76580001931F2 /* Demo2ViewController.m */,
 				5A8066A71BBB9575004517D7 /* Main.storyboard */,
 				5A8066AA1BBB9575004517D7 /* Images.xcassets */,
 				5A8066AC1BBB9575004517D7 /* LaunchScreen.xib */,
@@ -233,11 +243,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A3D6C211BC76574001931F2 /* Demo1ViewController.m in Sources */,
 				5A8066C51BBB9626004517D7 /* JVSlideView.m in Sources */,
 				5A8066A61BBB9575004517D7 /* ViewController.m in Sources */,
 				5A8066C81BBBD1AF004517D7 /* JVFlowLayout.m in Sources */,
 				5A8066A31BBB9575004517D7 /* AppDelegate.m in Sources */,
 				5A8066CB1BBBF0A1004517D7 /* JVSlideLoopView.m in Sources */,
+				5A3D6C241BC76580001931F2 /* Demo2ViewController.m in Sources */,
 				5A8066A01BBB9575004517D7 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -435,6 +447,7 @@
 				5A8066BF1BBB9576004517D7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5A8066C01BBB9576004517D7 /* Build configuration list for PBXNativeTarget "JVSlideKitTests" */ = {
 			isa = XCConfigurationList;
@@ -443,6 +456,7 @@
 				5A8066C21BBB9576004517D7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
