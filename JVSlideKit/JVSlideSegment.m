@@ -47,16 +47,6 @@
         self.cursorView.backgroundColor = self.cursorColor;
         [self.scrollView addSubview:self.cursorView];
         
-//        [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.edges.equalTo(@(0));
-//        }];
-        
-        //        [self.cursorView mas_makeConstraints:^(MASConstraintMaker *make) {
-        //            make.bottom.equalTo(self.scrollView);
-        //            make.height.equalTo(@(3));
-        //            make.width.equalTo(@(100));
-        //        }];
-        
         CAGradientLayer *maskLayer = [CAGradientLayer layer];
         id transparent = (id)[[UIColor clearColor] CGColor];
         id opaque = (id)[[UIColor blueColor] CGColor];
@@ -114,13 +104,12 @@
     self.segmentTabs = [NSMutableArray arrayWithCapacity:self.titles.count];
     CGFloat totalWidth = 0;
     for (int i = 0; i < self.titles.count; i++) {
-        
         JVSlideSegmentTab *tab = [[JVSlideSegmentTab alloc] init];
         tab.titleLabel.textColor = self.textColor;
         tab.titleLabel.highlightedTextColor = self.selectedTextColor;
         tab.titleLabel.text = self.titles[i];
         
-        CGFloat width;
+        CGFloat width = 0;
         if (self.titleWidth != 0) {
             width = self.titleWidth;
         } else {
@@ -132,42 +121,20 @@
         [self.scrollView addSubview:tab];
         [self.segmentTabs addObject:tab];
         
-        
-//        [tab mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.top.equalTo(@(0));
-//            make.height.equalTo(tab.superview);
-//            make.width.equalTo(@(width));
-//            make.left.equalTo(@(totalWidth));
-//        }];
-        
         if (i == 0) {
             tab.titleLabel.highlighted = YES;
             self.cursorView.frame = CGRectMake(self.cursorInset.left, self.cursorInset.top, width - (self.cursorInset.left + self.cursorInset.right), CGRectGetMaxY(self.scrollView.bounds)-self.cursorInset.bottom);
-//            [self.cursorView mas_updateConstraints:^(MASConstraintMaker *make) {
-//                make.left.equalTo(@(self.cursorInset.left));
-//                make.top.equalTo(@(self.cursorInset.top));
-//                make.width.equalTo(@(width - (self.cursorInset.left + self.cursorInset.right)));
-//            }];
         }
         
         totalWidth += width;
     }
     
-    //    [self.scrollView bringSubviewToFront:self.cursorView];
-    
     self.needSetupSubviews = NO;
     
-//    [self setNeedsLayout];
-//    [self layoutIfNeeded];
-    
     JVSlideSegmentTab *tab = self.segmentTabs.lastObject;
-    //    NSLog(@"maxX %@", @(CGRectGetMaxX(tab.frame)));
     
     self.scrollView.contentSize = CGSizeMake(CGRectGetMaxX(tab.frame), CGRectGetHeight(self.scrollView.bounds));
-//    [self.cursorView mas_updateConstraints:^(MASConstraintMaker *make) {
-//        make.bottom.equalTo(@(CGRectGetMaxY(self.scrollView.bounds)-self.cursorInset.bottom));
-//    }];
-    NSLog(@"frmae %@", NSStringFromCGRect(self.scrollView.bounds));
+//    NSLog(@"frmae %@", NSStringFromCGRect(self.scrollView.bounds));
 }
 
 - (void)scrollToIndex:(NSInteger)index animated:(BOOL)animated {
@@ -177,12 +144,9 @@
     CGFloat x = 0;
     
 //    NSLog(@"tab.frame %@", NSStringFromCGRect(tab.frame));
-    
-    
     if (tabX - midScrollX < 0) {
         x = 0;
     } else if (tabX + midScrollX > self.scrollView.contentSize.width){
-        //        x = self.scrollView.contentSize.width;
         x = self.scrollView.contentSize.width - midScrollX * 2;
         if (x < 0) {
             x = 0;
@@ -222,20 +186,10 @@
     
     if (animated) {
         [UIView animateWithDuration:0.2 animations:^{
-//            [self.cursorView mas_updateConstraints:^(MASConstraintMaker *make) {
-//                make.left.equalTo(@(CGRectGetMinX(tab.frame)+self.cursorInset.left));
-//                make.width.equalTo(@(CGRectGetWidth(tab.frame)-(self.cursorInset.left+self.cursorInset.right)));
-//            }];
-//            [self setNeedsLayout];
-//            [self layoutIfNeeded];
             self.cursorView.frame = CGRectMake(CGRectGetMinX(tab.frame)+self.cursorInset.left, CGRectGetMinY(self.cursorView.frame), CGRectGetWidth(tab.frame)-(self.cursorInset.left+self.cursorInset.right), CGRectGetHeight(self.cursorView.frame));
         }];
     } else {
         self.cursorView.frame = CGRectMake(CGRectGetMinX(tab.frame)+self.cursorInset.left, CGRectGetMinY(self.cursorView.frame), CGRectGetWidth(tab.frame)-(self.cursorInset.left+self.cursorInset.right), CGRectGetHeight(self.cursorView.frame));
-//        [self.cursorView mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.left.equalTo(@(CGRectGetMinX(tab.frame)+self.cursorInset.left));
-//            make.width.equalTo(@(CGRectGetWidth(tab.frame)-(self.cursorInset.left+self.cursorInset.right)));
-//        }];
     }
     [self.delegate slideSegment:self didSelectedIndex:_selectedIndex];
     
