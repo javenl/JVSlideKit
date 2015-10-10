@@ -17,9 +17,9 @@
 
 @property (nonatomic, strong) JVFlowLayout *flowLayout;
 
-@property (nonatomic, assign) NSUInteger itemCount;
+@property (nonatomic, assign) NSInteger itemCount;
 
-@property (nonatomic, readwrite) NSUInteger currentIndex;
+@property (nonatomic, readwrite) NSInteger currentIndex;
 
 @property (nonatomic, strong) NSTimer *autoSlideTimer;
 
@@ -33,7 +33,7 @@
 - (void)initValue {
 //    self.forceCenterView = YES;
     self.itemSpace = 5;
-//    self.collectionView.contentSize = CGSizeMake(0, CGRectGetHeight(self.bounds));
+    self.currentIndex = 0;
 }
 
 - (void)initSubviews {
@@ -45,15 +45,6 @@
     self.flowLayout.delegate = self;
     self.flowLayout.itemSpace = itemSpace;
     self.itemSize = itemSize;
-//    if (!CGSizeEqualToSize(itemSize, CGSizeZero)) {
-//        self.layout.itemSize = itemSize;
-//    }
-//    self.layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-//    self.layout.minimumInteritemSpacing = FLT_MAX;//prevent to display 2 row
-//    self.layout.minimumLineSpacing = itemSpace;
-//    self.layout.minimumLineSpacing = FLT_MAX;//prevent to display 2 row
-//    self.layout.headerReferenceSize = CGSizeMake(itemSpace, 0);
-//    self.layout.footerReferenceSize = CGSizeMake(itemSpace, 0);
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:self.flowLayout];
     self.collectionView.dataSource = self;
@@ -111,7 +102,6 @@
     [self.collectionView registerClass:cellClass forCellWithReuseIdentifier:identifier];
 }
 
-
 - (void)startAutoSlideWithInterval:(NSInteger)interval {
     [self.autoSlideTimer invalidate];
     self.autoSlideTimer = nil;
@@ -126,8 +116,14 @@
 #pragma mark - Event
 
 - (void)didTimerFire:(NSTimer *)timer {
-    self.currentIndex++;
-    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+//    self.currentIndex++;
+//    if (self.currentIndex >= self.itemCount) {
+//        self.currentIndex = 0;
+//    }
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentIndex+1 inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+//    if ([self.delegate respondsToSelector:@selector(slideView:didStopAtIndex:)]) {
+//        [self.delegate slideView:self didStopAtIndex:[self caculateRelativeIndexFromRealIndex:self.currentIndex+1]];
+//    }
 }
 
 #pragma mark - Helper
@@ -148,18 +144,6 @@
     if (self.itemCount == 0) {
         return 0;
     }
-    /*
-    NSInteger realOffset = realIndex - MAX_COUNT / 2;
-    NSInteger index = 0;
-    NSInteger count = self.itemCount;
-    NSInteger offset = realOffset % count;
-    if (offset >= 0) {
-        index = offset;
-    } else {
-        index = self.itemCount - labs(offset);
-    }
-    return index;
-    */
     return realIndex;
 }
 
@@ -170,13 +154,10 @@
 }
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
-    //    velocity = CGPointMake(1, 0);
-    //    scrollView.decelerationRate = 0;
-//    NSLog(@"velocity %@", NSStringFromCGPoint(velocity));
-    CGFloat pageWidth = self.itemSize.width + self.flowLayout.itemSpace;
-    CGFloat pageOffset = pageWidth - ( (CGRectGetWidth(self.bounds) - pageWidth) / 2) + self.flowLayout.itemSpace / 2;
-    NSLog(@"point %@", NSStringFromCGPoint(*targetContentOffset));
-    NSLog(@"pageOffset %@", @(pageOffset));
+//    CGFloat pageWidth = self.itemSize.width + self.flowLayout.itemSpace;
+//    CGFloat pageOffset = pageWidth - ( (CGRectGetWidth(self.bounds) - pageWidth) / 2) + self.flowLayout.itemSpace / 2;
+//    NSLog(@"point %@", NSStringFromCGPoint(*targetContentOffset));
+//    NSLog(@"pageOffset %@", @(pageOffset));
     if (self.forceCenterView) {
         if (targetContentOffset->x == 0 || targetContentOffset->x == (scrollView.contentSize.width - scrollView.bounds.size.width)) {
             return;
@@ -185,41 +166,6 @@
         targetContentOffset->x = targetOffset.x;
         targetContentOffset->y = targetOffset.y;
     }
-    
-
-    /*
-     if (!self.pagingEnabled) {
-     CGPoint targetOffset = [self nearestPointForOffset:*targetContentOffset];
-     targetContentOffset->x = targetOffset.x;
-     targetContentOffset->y = targetOffset.y;
-     } else {
-     CGPoint offset = *targetContentOffset;
-     CGFloat pageWidth = self.layout.itemSize.width + self.layout.minimumLineSpacing;
-     NSInteger page = (offset.x + CGRectGetWidth(self.bounds) / 2) / pageWidth;
-     if (page > 0) {
-     NSInteger currentPage = [self caculateRelativeIndexFromRealIndex:self.currentIndex];
-     CGFloat pageOffset = pageWidth - ( (CGRectGetWidth(self.bounds) - pageWidth) / 2) + self.layout.minimumLineSpacing / 2;
-     CGFloat targetX = 0;
-     if (page == currentPage) {
-     targetX = pageOffset + (currentPage - 1) * pageWidth;
-     } else if (page > currentPage) {
-     targetX = pageOffset + (currentPage - 1 + 1) * pageWidth;
-     } else if (page < currentPage) {
-     targetX = pageOffset + (currentPage - 1 - 1) * pageWidth;
-     }
-     CGPoint targetOffset = CGPointMake(targetX, offset.y);
-     targetContentOffset->x = targetOffset.x;
-     targetContentOffset->y = targetOffset.y;
-     //            return CGPointMake(targetX, offset.y);
-     } else {
-     CGPoint targetOffset = CGPointMake(0, offset.y);
-     targetContentOffset->x = targetOffset.x;
-     targetContentOffset->y = targetOffset.y;
-     //            return CGPointMake(0, offset.y);
-     }
-     }
-     */
-//    NSLog(@"point %@", NSStringFromCGPoint(*targetContentOffset));
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
@@ -232,10 +178,17 @@
     }
 }
 
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView; {
+    if ([self.delegate respondsToSelector:@selector(slideView:didStopAtIndex:)]) {
+        [self.delegate slideView:self didStopAtIndex:[self caculateRelativeIndexFromRealIndex:self.currentIndex]];
+    }
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat pageWidth = self.itemSize.width + self.flowLayout.itemSpace;
     NSInteger page = (scrollView.contentOffset.x + CGRectGetWidth(self.bounds) / 2) / pageWidth;
     if (page != self.currentIndex) {
+        NSLog(@"currenntIndex %@  page %@", @(self.currentIndex), @(page));
         self.currentIndex = page;
         if ([self.delegate respondsToSelector:@selector(slideView:didChangeCenterIndex:)]) {
             [self.delegate slideView:self didChangeCenterIndex:[self caculateRelativeIndexFromRealIndex:self.currentIndex]];
@@ -281,7 +234,6 @@
 - (void)setItemSize:(CGSize)itemSize {
     if (!CGSizeEqualToSize(_itemSize, itemSize)) {
         _itemSize = itemSize;
-//        self.flowLayout.itemSize = itemSize;
         [self.flowLayout invalidateLayout];
     }
 }
@@ -290,8 +242,6 @@
     if (_itemSpace != itemSpace) {
         _itemSpace = itemSpace;
         self.flowLayout.itemSpace = itemSpace;
-//        self.flowLayout.headerReferenceSize = CGSizeMake(itemSpace, 0);
-//        self.flowLayout.footerReferenceSize = CGSizeMake(itemSpace, 0);
         [self.flowLayout invalidateLayout];
     }
 }

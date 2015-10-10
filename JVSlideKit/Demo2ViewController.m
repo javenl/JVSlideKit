@@ -44,6 +44,12 @@ static NSString *kIdentifier = @"SlideLoopViewCell";
     centerLine.backgroundColor = [UIColor redColor];
     [self.view addSubview:centerLine];
     
+    [self.slideLoopView startAutoSlideWithInterval:5];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self.slideLoopView stopAutoSlide];
 }
 
 #pragma mark - SlideViewDataSource

@@ -15,13 +15,15 @@
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
-@property (nonatomic, assign) NSUInteger itemCount;
+@property (nonatomic, assign) NSInteger itemCount;
 
-@property (nonatomic, readwrite) NSUInteger currentIndex;
+@property (nonatomic, assign, readwrite) NSInteger currentIndex;
 
 @end
 
 @implementation JVSlideLoopView
+
+@dynamic currentIndex;
 
 - (void)initSubviewsWithItemSize:(CGSize)itemSize itemSpace:(NSInteger)itemSpace {
     [super initSubviewsWithItemSize:itemSize itemSpace:itemSpace];
@@ -32,6 +34,13 @@
     });
 }
 
+- (void)didTimerFire:(NSTimer *)timer {
+//    self.currentIndex++;
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentIndex+1 inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+//    if ([self.delegate respondsToSelector:@selector(slideView:didStopAtIndex:)]) {
+//        [self.delegate slideView:self didStopAtIndex:[self caculateRelativeIndexFromRealIndex:self.currentIndex+1]];
+//    }
+}
 
 - (NSInteger)caculateRelativeIndexFromRealIndex:(NSInteger)realIndex {
     if (self.itemCount == 0) {

@@ -36,9 +36,13 @@
 
 @property (nonatomic, weak) id <JVSlideViewDelegate> delegate;
 @property (nonatomic, weak) id <JVSlideViewDataSource> dataSource;
+
+@property (nonatomic, assign, readonly) NSInteger currentIndex;
+
 @property (nonatomic, assign) CGSize itemSize;
 @property (nonatomic, assign) CGFloat itemSpace;
 @property (nonatomic, assign) BOOL forceCenterView;
+
 
 - (instancetype)initWithItemSize:(CGSize)itemSize itemSpace:(NSInteger)itemSpace;
 

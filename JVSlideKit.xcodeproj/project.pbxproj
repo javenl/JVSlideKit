@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5A3D6C211BC76574001931F2 /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3D6C201BC76574001931F2 /* Demo1ViewController.m */; };
 		5A3D6C241BC76580001931F2 /* Demo2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3D6C231BC76580001931F2 /* Demo2ViewController.m */; };
+		5A3D6C271BC7A9AE001931F2 /* JVBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3D6C261BC7A9AE001931F2 /* JVBannerView.m */; };
+		5A3D6C2A1BC7B2ED001931F2 /* Demo3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3D6C291BC7B2ED001931F2 /* Demo3ViewController.m */; };
 		5A8066A01BBB9575004517D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A80669F1BBB9575004517D7 /* main.m */; };
 		5A8066A31BBB9575004517D7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A8066A21BBB9575004517D7 /* AppDelegate.m */; };
 		5A8066A61BBB9575004517D7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A8066A51BBB9575004517D7 /* ViewController.m */; };
@@ -36,6 +38,10 @@
 		5A3D6C201BC76574001931F2 /* Demo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
 		5A3D6C221BC76580001931F2 /* Demo2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo2ViewController.h; sourceTree = "<group>"; };
 		5A3D6C231BC76580001931F2 /* Demo2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo2ViewController.m; sourceTree = "<group>"; };
+		5A3D6C251BC7A9AE001931F2 /* JVBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVBannerView.h; sourceTree = "<group>"; };
+		5A3D6C261BC7A9AE001931F2 /* JVBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVBannerView.m; sourceTree = "<group>"; };
+		5A3D6C281BC7B2ED001931F2 /* Demo3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo3ViewController.h; sourceTree = "<group>"; };
+		5A3D6C291BC7B2ED001931F2 /* Demo3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo3ViewController.m; sourceTree = "<group>"; };
 		5A80669A1BBB9575004517D7 /* JVSlideKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JVSlideKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A80669E1BBB9575004517D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A80669F1BBB9575004517D7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -104,6 +110,8 @@
 				5A3D6C201BC76574001931F2 /* Demo1ViewController.m */,
 				5A3D6C221BC76580001931F2 /* Demo2ViewController.h */,
 				5A3D6C231BC76580001931F2 /* Demo2ViewController.m */,
+				5A3D6C281BC7B2ED001931F2 /* Demo3ViewController.h */,
+				5A3D6C291BC7B2ED001931F2 /* Demo3ViewController.m */,
 				5A8066A71BBB9575004517D7 /* Main.storyboard */,
 				5A8066AA1BBB9575004517D7 /* Images.xcassets */,
 				5A8066AC1BBB9575004517D7 /* LaunchScreen.xib */,
@@ -114,6 +122,8 @@
 				5A8066C71BBBD1AF004517D7 /* JVFlowLayout.m */,
 				5A8066C91BBBF0A1004517D7 /* JVSlideLoopView.h */,
 				5A8066CA1BBBF0A1004517D7 /* JVSlideLoopView.m */,
+				5A3D6C251BC7A9AE001931F2 /* JVBannerView.h */,
+				5A3D6C261BC7A9AE001931F2 /* JVBannerView.m */,
 			);
 			path = JVSlideKit;
 			sourceTree = "<group>";
@@ -244,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A3D6C211BC76574001931F2 /* Demo1ViewController.m in Sources */,
+				5A3D6C271BC7A9AE001931F2 /* JVBannerView.m in Sources */,
 				5A8066C51BBB9626004517D7 /* JVSlideView.m in Sources */,
 				5A8066A61BBB9575004517D7 /* ViewController.m in Sources */,
 				5A8066C81BBBD1AF004517D7 /* JVFlowLayout.m in Sources */,
@@ -251,6 +262,7 @@
 				5A8066CB1BBBF0A1004517D7 /* JVSlideLoopView.m in Sources */,
 				5A3D6C241BC76580001931F2 /* Demo2ViewController.m in Sources */,
 				5A8066A01BBB9575004517D7 /* main.m in Sources */,
+				5A3D6C2A1BC7B2ED001931F2 /* Demo3ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
