@@ -7,7 +7,7 @@
 //
 
 #import "JVSlideLoopView.h"
-#import "JVFlowLayout.h"
+#import "JVLinearLayout.h"
 
 #define MAX_COUNT INT_LEAST16_MAX
 

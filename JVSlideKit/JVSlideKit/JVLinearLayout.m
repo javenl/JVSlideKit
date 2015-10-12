@@ -6,11 +6,9 @@
 //
 //
 
-#import "JVFlowLayout.h"
+#import "JVLinearLayout.h"
 
-@interface JVFlowLayout ()
-
-//@property (nonatomic, readwrite) NSInteger columnCount;
+@interface JVLinearLayout ()
 
 @property (nonatomic, readwrite) NSInteger itemCount;
 
@@ -18,7 +16,7 @@
 
 @end
 
-@implementation JVFlowLayout
+@implementation JVLinearLayout
 
 - (id)init {
     self = [super init];
@@ -79,7 +77,7 @@
 #pragma mark - UICollectionViewLayout
 
 - (CGSize)collectionViewContentSize {
-//    CGFloat columnHeight = [self maxHeightForColumns:self.columns] + self.contentInsets.top + self.contentInsets.bottom;
+    //保证contentSize比bounds.height大，否则小于一页不能滚动
     UICollectionViewLayoutAttributes *attribute = [self.attributeArray lastObject];
     if (self.isHorizontal) {
         CGFloat width = CGRectGetMaxX(attribute.frame) + self.itemSpace;
@@ -90,12 +88,6 @@
         height = MAX(height, CGRectGetHeight(self.collectionView.bounds)+ 1);
         return CGSizeMake(CGRectGetWidth(self.collectionView.bounds), height);
     }
-
-    //保证contentSize比bounds.height大，否则小于一页不能滚动
-//    CGFloat height = MAX(columnHeight, CGRectGetHeight(self.collectionView.bounds) - self.collectionView.contentInset.top + 1);
-    //    NSLog(@"columnHeight %@  columnBounds %@  columnInsets %@", @(columnHeight), NSStringFromCGRect(self.collectionView.bounds), NSStringFromUIEdgeInsets(self.collectionView.contentInset));
-    //    NSLog(@"contentHeight %@", @(height));
-    
 }
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect {
@@ -112,7 +104,5 @@
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
     return self.attributeArray[indexPath.row];
 }
-
-//- (NSLayoutAttribute *)la
 
 @end

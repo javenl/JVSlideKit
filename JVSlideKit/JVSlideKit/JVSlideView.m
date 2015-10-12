@@ -7,15 +7,15 @@
 //
 
 #import "JVSlideView.h"
-#import "JVFlowLayout.h"
+#import "JVLinearLayout.h"
 
 #define MAX_COUNT INT_LEAST16_MAX
 
-@interface JVSlideView () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, UICollectionViewDelegateJVFlowLayout>
+@interface JVSlideView () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, UICollectionViewDelegateJVLineaarLayout>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
-@property (nonatomic, strong) JVFlowLayout *flowLayout;
+@property (nonatomic, strong) JVLinearLayout *flowLayout;
 
 @property (nonatomic, assign) NSInteger itemCount;
 
@@ -41,7 +41,7 @@
 }
 
 - (void)initSubviewsWithItemSize:(CGSize)itemSize itemSpace:(NSInteger)itemSpace {
-    self.flowLayout = [[JVFlowLayout alloc] init];
+    self.flowLayout = [[JVLinearLayout alloc] init];
     self.flowLayout.delegate = self;
     self.flowLayout.itemSpace = itemSpace;
     self.itemSize = itemSize;
