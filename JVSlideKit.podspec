@@ -12,10 +12,10 @@ Pod::Spec.new do |s|
                    * Try to keep it short, snappy and to the point.
                    * Finally, don't worry about the indent, CocoaPods strips it!
                    DESC
-  #s.homepage     = "http://EXAMPLE/JVSlideKit"
+  s.homepage     = "https://coding.net/u/javenliu/p/JVSlideKit/git"
   # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
   s.author             = { "javen" => "412775083@qq.com" }
-  #s.source       = { :git => "http://EXAMPLE/JVSlideKit.git", :tag => "0.0.1" }
+  s.source       = { :git => "https://git.coding.net/javenliu/JVSlideKit.git", :tag => "0.0.1" }
   s.source_files  = "Classes", "Classes/**/*.{h,m}"
 
 end
