@@ -25,7 +25,7 @@
 /** Default 8.0 */
 @property (nonatomic, assign) CGFloat titleSpace;
 
-/** Default 0, if titleWidth = 0, titleWidth is autofit width */
+/** Default 0, if titleWidth = 0, titleWidth is autofit */
 @property (nonatomic, assign) CGFloat titleWidth;
 
 @property (nonatomic, assign) CGFloat textSize;
@@ -41,7 +41,6 @@
 
 /** Default UIEdgeInsetsMake(2, 2, 2, 2) */
 @property (nonatomic, assign) UIEdgeInsets cursorInset;
-
 
 /** Default 4.0 */
 @property (nonatomic, assign) NSInteger cursorCornerRadius;

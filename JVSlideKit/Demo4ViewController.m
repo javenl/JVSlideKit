@@ -30,21 +30,23 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.segment = [[JVSlideSegment alloc] init];
+    self.segment.backgroundColor = [UIColor purpleColor];
     self.segment.frame = CGRectMake(0, 100, CGRectGetWidth(self.view.bounds), 44);
     self.segment.delegate = self;
     self.segment.cursorColor = [UIColor yellowColor];
     self.segment.selectedTextColor = [UIColor redColor];
+    self.segment.maskWidth = 20;
     [self.view addSubview:self.segment];
     
-    
     self.segment2 = [[JVSlideSegment alloc] init];
+    self.segment2.backgroundColor = [UIColor purpleColor];
     self.segment2.frame = CGRectMake(0, 200, CGRectGetWidth(self.view.bounds), 44);
     self.segment2.delegate = self;
     self.segment2.cursorColor = [UIColor yellowColor];
     self.segment2.selectedTextColor = [UIColor redColor];
     self.segment2.titleWidth = CGRectGetWidth(self.view.bounds) / 5;
+    self.segment2.maskWidth = 20;
     [self.view addSubview:self.segment2];
-    
     
     self.nextBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     self.nextBtn.frame = CGRectMake(0, 64 + 10, 60, 44);

@@ -10,7 +10,7 @@
 #import "JVSlideSegmentTab.h"
 
 
-@interface JVSlideSegment ()
+@interface JVSlideSegment () <UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIView *cursorView;
 
@@ -21,6 +21,8 @@
 @property (nonatomic, strong) NSMutableArray *segmentTabs;
 
 @property (nonatomic, assign) BOOL needSetupSubviews;
+
+//@property (nonatomic, strong) UIView *scrollViewMask;
 
 @property (nonatomic, strong) CAGradientLayer *maskLayer;
 
@@ -36,7 +38,12 @@
         tapGesture.numberOfTapsRequired = 1;
         [self addGestureRecognizer:tapGesture];
         
+//        self.scrollViewMask = [[UIView alloc] init];
+//        self.scrollViewMask.frame = self.bounds;
+//        [self addSubview:self.scrollViewMask];
+        
         self.scrollView = [[UIScrollView alloc] init];
+        self.scrollView.delegate = self;
         self.scrollView.frame = self.bounds;
         self.scrollView.showsVerticalScrollIndicator = NO;
         self.scrollView.showsHorizontalScrollIndicator = NO;
@@ -51,9 +58,10 @@
         id transparent = (id)[[UIColor clearColor] CGColor];
         id opaque = (id)[[UIColor blueColor] CGColor];
         maskLayer.colors = @[transparent, opaque, opaque, transparent];
-        maskLayer.locations = @[@(0.0),@(0.05),@(0.95), @(1)];
+        maskLayer.locations = @[@(0.0),@(0.0),@(1), @(1)];
         maskLayer.startPoint = CGPointMake(0, 0.5);
         maskLayer.endPoint = CGPointMake(1, 0.5);
+        maskLayer.frame = self.scrollView.bounds;
         [self.layer setMask:maskLayer];
         self.maskLayer = maskLayer;
         
@@ -72,12 +80,64 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+//    self.scrollViewMask.frame = self.bounds;
     self.scrollView.frame = self.bounds;
     self.maskLayer.frame = self.bounds;
-    CGFloat rate = self.maskWidth / CGRectGetWidth(self.maskLayer.bounds);
-    self.maskLayer.locations = @[@(0.0),@(rate),@(1-rate), @(1)];
+//    CGFloat rate = self.maskWidth / CGRectGetWidth(self.maskLayer.bounds);
+//    self.maskLayer.locations = @[@(0.0),@(rate),@(1-rate), @(1)];
     if (self.needSetupSubviews) {
         [self setupSubviews];
+    }
+    if (self.scrollView.contentSize.width > CGRectGetWidth(self.bounds) + self.maskWidth) {
+        CGFloat rate = self.maskWidth / CGRectGetWidth(self.maskLayer.bounds);
+        self.maskLayer.locations = @[@(0.0),@(0),@(1 - rate), @(1)];
+    }
+//    [self setupMaskLayerLocations];
+}
+
+- (void)setupMaskLayerLocations {
+    if (self.scrollView.contentSize.width == 0) {
+        return;
+    }
+    
+//    CGFloat rate = self.maskWidth / CGRectGetWidth(self.maskLayer.bounds);
+//    self.maskLayer.locations = @[@(0.0),@(rate),@(1-rate), @(1)];
+
+    CGFloat left = 0;
+    CGFloat right = 0;
+    BOOL needReset = NO;
+    
+//    if (self.maskLayer.locations != nil) {
+        left = [self.maskLayer.locations[1] doubleValue];
+        right = [self.maskLayer.locations[2] doubleValue];
+//    }
+    
+    if (self.scrollView.contentOffset.x <= self.maskWidth) {
+        if (left != 0) {
+            left = 0;
+            needReset = YES;
+        }
+    }
+//    NSLog(@"self.scrollView.contentOffset.x %@  self.scrollView.contentSize.width %@ CGRectGetWidth(self.scrollView.bounds) %@", @(self.scrollView.contentOffset.x), @(self.scrollView.contentSize.width), @(CGRectGetWidth(self.scrollView.bounds)));
+    if (self.scrollView.contentOffset.x >= self.scrollView.contentSize.width - CGRectGetWidth(self.scrollView.bounds) - self.maskWidth) {
+        if (right != 1) {
+            right = 1;
+            needReset = YES;
+        }
+    }
+    if (self.scrollView.contentOffset.x > self.maskWidth && self.scrollView.contentOffset.x < self.scrollView.contentSize.width - CGRectGetWidth(self.scrollView.bounds) - self.maskWidth) {
+        CGFloat rate = self.maskWidth / CGRectGetWidth(self.maskLayer.bounds);
+        if ((int)(left * 1000) != (int)(rate * 1000)) {
+            left = rate;
+            needReset = YES;
+        }
+        if ((int)(right * 1000) != (int)((1 - rate) * 1000)) {
+            right = 1 - rate;
+            needReset = YES;
+        }
+    }
+    if (needReset) {
+        self.maskLayer.locations = @[@(0.0),@(left),@(right), @(1)];
     }
 }
 
@@ -134,6 +194,7 @@
     JVSlideSegmentTab *tab = self.segmentTabs.lastObject;
     
     self.scrollView.contentSize = CGSizeMake(CGRectGetMaxX(tab.frame), CGRectGetHeight(self.scrollView.bounds));
+//    [self setupMaskLayerLocations];
 //    NSLog(@"frmae %@", NSStringFromCGRect(self.scrollView.bounds));
 }
 
@@ -161,6 +222,32 @@
     [self.scrollView setContentOffset:point animated:YES];
     
     [self setSelectedIndex:index animated:animated];
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self setupMaskLayerLocations];
+    /*
+//    CGFloat rate = self.maskWidth / CGRectGetWidth(self.maskLayer.bounds);
+    if (scrollView.contentOffset.x <= self.maskWidth) {
+        if ([self.maskLayer.locations[1] integerValue] != 0) {
+            CGFloat rate = self.maskWidth / CGRectGetWidth(self.maskLayer.bounds);
+            self.maskLayer.locations = @[@(0.0),@(0),@(1-rate), @(1)];
+        }
+    }
+    if (scrollView.contentOffset.x >= self.scrollView.contentSize.width - CGRectGetWidth(self.scrollView.bounds)) {
+        if ([self.maskLayer.locations[2] integerValue] != 1) {
+            CGFloat rate = self.maskWidth / CGRectGetWidth(self.maskLayer.bounds);
+            self.maskLayer.locations = @[@(0.0),@(0),@(1-rate), @(1)];
+        }
+        CGFloat rate = self.maskWidth / CGRectGetWidth(self.maskLayer.bounds);
+        self.maskLayer.locations = @[@(0.0),@(rate),@(1), @(1)];
+    } else {
+        
+        self.maskLayer.locations = @[@(0.0),@(rate),@(1-rate), @(1)];
+    }
+    */
 }
 
 #pragma mark - Properties
