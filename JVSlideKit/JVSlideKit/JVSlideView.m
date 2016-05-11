@@ -11,7 +11,7 @@
 
 #define MAX_COUNT INT_LEAST16_MAX
 
-@interface JVSlideView () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, UICollectionViewDelegateJVLineaarLayout>
+@interface JVSlideView () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, UICollectionViewDelegateJVLinearLayout>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
@@ -22,6 +22,8 @@
 @property (nonatomic, readwrite) NSInteger currentIndex;
 
 @property (nonatomic, strong) NSTimer *autoSlideTimer;
+
+@property (nonatomic, assign) NSInteger autoSlideTimerInterval;
 
 @end
 
@@ -54,7 +56,8 @@
     //    self.collectionView.pagingEnabled = YES;
     [self addSubview:self.collectionView];
     
-    self.collectionView.backgroundColor = [UIColor purpleColor];
+//    self.collectionView.backgroundColor = [UIColor purpleColor];
+    self.collectionView.backgroundColor = [UIColor clearColor];
 }
 
 - (instancetype)initWithItemSize:(CGSize)itemSize itemSpace:(NSInteger)itemSpace {
@@ -95,7 +98,10 @@
     NSAssert(self.dataSource != nil, @"SlideView DataSource should not be nil");
     NSAssert([self.dataSource respondsToSelector:@selector(numberOfItemsInSlideView:)], @"Method \"numberOfItemsInSlideView:\" should be implemented");
     self.itemCount = [self.dataSource numberOfItemsInSlideView:self];
-    [self.collectionView reloadData];
+    if (self.itemCount > 0) {
+        [self.collectionView reloadData];
+    }
+//    [self.collectionView reloadData];
 }
 
 - (void)registerClass:(Class)cellClass forCellWithReuseIdentifier:(NSString *)identifier {
@@ -103,14 +109,13 @@
 }
 
 - (void)startAutoSlideWithInterval:(NSInteger)interval {
-    [self.autoSlideTimer invalidate];
-    self.autoSlideTimer = nil;
-    self.autoSlideTimer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(didTimerFire:) userInfo:nil repeats:YES];
+    self.autoSlideTimerInterval = interval;
+    [self startAutoSlideTimer];
 }
 
 - (void)stopAutoSlide {
-    [self.autoSlideTimer invalidate];
-    self.autoSlideTimer = nil;
+    self.autoSlideTimerInterval = 0;
+    [self stopAutoSlideTimer];
 }
 
 #pragma mark - Event
@@ -127,6 +132,17 @@
 }
 
 #pragma mark - Helper
+
+- (void)startAutoSlideTimer {
+    [self stopAutoSlideTimer];
+    self.autoSlideTimer = [NSTimer scheduledTimerWithTimeInterval:self.autoSlideTimerInterval target:self selector:@selector(didTimerFire:) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:self.autoSlideTimer forMode:NSRunLoopCommonModes];
+}
+
+- (void)stopAutoSlideTimer {
+    [self.autoSlideTimer invalidate];
+    self.autoSlideTimer = nil;
+}
 
 - (CGPoint)nearestPointForOffset:(CGPoint)offset {
     CGFloat pageWidth = self.itemSize.width + self.flowLayout.itemSpace;
@@ -150,7 +166,9 @@
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    
+    if (self.autoSlideTimerInterval > 0) {
+        [self stopAutoSlideTimer];
+    }
 }
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
@@ -176,6 +194,9 @@
     if ([self.delegate respondsToSelector:@selector(slideView:didStopAtIndex:)]) {
         [self.delegate slideView:self didStopAtIndex:[self caculateRelativeIndexFromRealIndex:self.currentIndex]];
     }
+    if (self.autoSlideTimerInterval > 0) {
+        [self startAutoSlideTimer];
+    }
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView; {
@@ -188,7 +209,7 @@
     CGFloat pageWidth = self.itemSize.width + self.flowLayout.itemSpace;
     NSInteger page = (scrollView.contentOffset.x + CGRectGetWidth(self.bounds) / 2) / pageWidth;
     if (page != self.currentIndex) {
-        NSLog(@"currenntIndex %@  page %@", @(self.currentIndex), @(page));
+//        NSLog(@"currenntIndex %@  page %@", @(self.currentIndex), @(page));
         self.currentIndex = page;
         if ([self.delegate respondsToSelector:@selector(slideView:didChangeCenterIndex:)]) {
             [self.delegate slideView:self didChangeCenterIndex:[self caculateRelativeIndexFromRealIndex:self.currentIndex]];
@@ -199,6 +220,7 @@
 #pragma mark - UICollectionViewDelegateJVFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+//    NSLog(@"item Size %@", NSStringFromCGSize(self.itemSize));
     return self.itemSize;
 }
 
@@ -244,6 +266,16 @@
         self.flowLayout.itemSpace = itemSpace;
         [self.flowLayout invalidateLayout];
     }
+}
+
+- (void)setScrollEnable:(BOOL)scrollEnable {
+    _scrollEnable = scrollEnable;
+    self.collectionView.scrollEnabled = scrollEnable;
+}
+
+- (void)setBounces:(BOOL)bounces {
+    _bounces = bounces;
+    self.collectionView.bounces = bounces;
 }
 
 @end

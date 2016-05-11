@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "JVSlideKit"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.platform     = :ios, "7.0"
   s.summary      = "A short description of JVSlideKit."
   s.description  = <<-DESC
@@ -16,6 +16,6 @@ Pod::Spec.new do |s|
   # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
   s.author             = { "javen" => "412775083@qq.com" }
   s.source       = { :git => "https://git.coding.net/javenliu/JVSlideKit.git", :tag => "0.0.1" }
-  s.source_files  = "Classes", "Classes/**/*.{h,m}"
+  s.source_files  = "JVSlideKit/JVSlideKit/*.{h,m}"
 
 end

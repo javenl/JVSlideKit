@@ -32,6 +32,7 @@ static NSString *kIdentifier = @"BannerCell";
     self.bannerView.delegate = self;
     self.bannerView.dataSource = self;
 //    self.bannerView.pagingEnabled = YES;
+    self.bannerView.loop = YES;
     self.bannerView.forceCenterView = YES;
     [self.bannerView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:kIdentifier];
     [self.view addSubview:self.bannerView];
@@ -42,7 +43,7 @@ static NSString *kIdentifier = @"BannerCell";
     
     [self.bannerView reloadData];
     
-    [self.bannerView startAutoSlideWithInterval:5];
+    [self.bannerView startAutoSlideWithInterval:3];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

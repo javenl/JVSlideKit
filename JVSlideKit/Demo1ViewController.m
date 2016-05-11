@@ -74,12 +74,12 @@ static NSString *kIdentifier = @"SlideViewCell";
      [self.view addSubview:self.collectionView];
      */
     
-    [self.slideView startAutoSlideWithInterval:3];
+//    [self.slideView startAutoSlideWithInterval:3];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [self.slideView stopAutoSlide];
+//    [self.slideView stopAutoSlide];
 }
 
 /*

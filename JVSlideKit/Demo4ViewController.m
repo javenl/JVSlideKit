@@ -40,9 +40,10 @@
     
     self.segment2 = [[JVSlideSegment alloc] init];
     self.segment2.backgroundColor = [UIColor purpleColor];
-    self.segment2.frame = CGRectMake(0, 200, CGRectGetWidth(self.view.bounds), 44);
+    self.segment2.frame = CGRectMake(0, 200, CGRectGetWidth(self.view.bounds), 60);
     self.segment2.delegate = self;
     self.segment2.cursorColor = [UIColor yellowColor];
+//    self.segment2.cursorInset = 
     self.segment2.selectedTextColor = [UIColor redColor];
     self.segment2.titleWidth = CGRectGetWidth(self.view.bounds) / 5;
     self.segment2.maskWidth = 20;

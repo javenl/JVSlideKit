@@ -1,8 +1,8 @@
 //
-//  JVLinearLayout.h
+//  JVFlowLayout.h
 //  JVSlideKit
 //
-//  Created by liu on 15/9/30.
+//  Created by liu on 15/10/12.
 //
 //
 
@@ -14,16 +14,13 @@
 
 @end
 
-@interface JVLinearLayout : UICollectionViewLayout
+@interface JVFlowLayout : UICollectionViewLayout
 
 @property (nonatomic, weak) id <UICollectionViewDelegateJVLinearLayout> delegate;
-
-@property (nonatomic, assign) BOOL isHorizontal; //default is YES
 
 /**
  *  Default is 10
  */
 @property (nonatomic, assign) CGFloat itemSpace;
-
 
 @end

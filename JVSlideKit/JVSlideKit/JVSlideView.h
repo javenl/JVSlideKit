@@ -43,6 +43,8 @@
 @property (nonatomic, assign) CGFloat itemSpace;
 @property (nonatomic, assign) BOOL forceCenterView;
 
+@property (nonatomic, assign) BOOL scrollEnable;
+@property (nonatomic, assign) BOOL bounces;
 
 - (instancetype)initWithItemSize:(CGSize)itemSize itemSpace:(NSInteger)itemSpace;
 

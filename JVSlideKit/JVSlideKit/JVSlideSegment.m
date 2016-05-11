@@ -183,7 +183,7 @@
         
         if (i == 0) {
             tab.titleLabel.highlighted = YES;
-            self.cursorView.frame = CGRectMake(self.cursorInset.left, self.cursorInset.top, width - (self.cursorInset.left + self.cursorInset.right), CGRectGetMaxY(self.scrollView.bounds)-self.cursorInset.bottom);
+            self.cursorView.frame = CGRectMake(self.cursorInset.left, self.cursorInset.top, width - (self.cursorInset.left + self.cursorInset.right), CGRectGetMaxY(self.scrollView.bounds)-self.cursorInset.bottom - self.cursorInset.top);
         }
         
         totalWidth += width;
@@ -199,6 +199,9 @@
 }
 
 - (void)scrollToIndex:(NSInteger)index animated:(BOOL)animated {
+    if (self.selectedIndex == index) {
+        return;
+    }
     JVSlideSegmentTab *tab = self.segmentTabs[index];
     CGFloat tabX = CGRectGetMidX(tab.frame);
     CGFloat midScrollX = CGRectGetWidth(self.bounds)/2;
