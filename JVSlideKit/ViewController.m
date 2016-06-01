@@ -32,7 +32,7 @@ static NSString *kIdentifier = @"UITableViewCell";
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
     
-    self.titles = @[@"1. JVSlideView", @"2. JVSlideLoopView", @"3. JVBannerView", @"4. JVSlideSegment", @"5. JVHorizontalPagedLayout"];
+    self.titles = @[@"1. JVSlideView", @"2. JVSlideLoopView", @"3. JVBannerView", @"4. JVSlideSegment", @"5. JVHorizontalPagedLayout", @"6. ImagePreviwer, PhotoBrowser"];
     
 }
 

@@ -53,12 +53,15 @@
     self.currentY = 0;
     self.currentPage = 1;
     
+    CGFloat pageWidth = CGRectGetWidth(self.collectionView.bounds);
+    CGFloat pageHeight = CGRectGetHeight(self.collectionView.bounds);
+    if (pageWidth == 0 || pageHeight == 0) {
+        return;
+    }
+    
     for (NSInteger i = 0; i < self.itemCount; i++) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
         UICollectionViewLayoutAttributes *attribute = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-        
-        CGFloat pageWidth = CGRectGetWidth(self.collectionView.bounds);
-        CGFloat pageHeight = CGRectGetHeight(self.collectionView.bounds);
         
         NSAssert(self.itemSize.width < pageWidth, @"itemSize.width should not lager than collectionView width");
         NSAssert(self.itemSize.height < pageHeight, @"itemSize.width should not lager than collectionView width");

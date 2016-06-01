@@ -7,7 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A0232CF1CFCBC510095B5CB /* JVPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0232CE1CFCBC510095B5CB /* JVPhotoBrowser.m */; };
+		5A0232D21CFCBDC80095B5CB /* JVPhotoBrowserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0232D11CFCBDC80095B5CB /* JVPhotoBrowserCell.m */; };
+		5A0232D51CFCC0970095B5CB /* JVImagePreviewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0232D41CFCC0970095B5CB /* JVImagePreviewer.m */; };
+		5A0232DF1CFCC24B0095B5CB /* a004.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5A0232D71CFCC24B0095B5CB /* a004.jpg */; };
+		5A0232E01CFCC24B0095B5CB /* a005.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5A0232D81CFCC24B0095B5CB /* a005.jpg */; };
+		5A0232E11CFCC24B0095B5CB /* a006.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5A0232D91CFCC24B0095B5CB /* a006.jpg */; };
+		5A0232E21CFCC24B0095B5CB /* a007.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5A0232DA1CFCC24B0095B5CB /* a007.jpg */; };
+		5A0232E31CFCC24B0095B5CB /* a008.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5A0232DB1CFCC24B0095B5CB /* a008.jpg */; };
+		5A0232E41CFCC24B0095B5CB /* a009.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5A0232DC1CFCC24B0095B5CB /* a009.jpg */; };
+		5A0232E51CFCC24B0095B5CB /* a010.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5A0232DD1CFCC24B0095B5CB /* a010.jpg */; };
+		5A0232E61CFCC24B0095B5CB /* a011.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5A0232DE1CFCC24B0095B5CB /* a011.jpg */; };
 		5A0ACE2E1BD5F2E200BFA13F /* JVSlideViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0ACE2D1BD5F2E200BFA13F /* JVSlideViewContainer.m */; };
+		5A3BDB271CFED5AE001B67B2 /* TestPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3BDB261CFED5AE001B67B2 /* TestPhotoBrowser.m */; };
+		5A3CAC071CFD397500D7D596 /* Demo6ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3CAC061CFD397500D7D596 /* Demo6ViewController.m */; };
+		5A3CAC091CFD9E0B00D7D596 /* a012.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A3CAC081CFD9E0B00D7D596 /* a012.png */; };
 		5A3D6C211BC76574001931F2 /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3D6C201BC76574001931F2 /* Demo1ViewController.m */; };
 		5A3D6C241BC76580001931F2 /* Demo2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3D6C231BC76580001931F2 /* Demo2ViewController.m */; };
 		5A3D6C2A1BC7B2ED001931F2 /* Demo3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3D6C291BC7B2ED001931F2 /* Demo3ViewController.m */; };
@@ -42,8 +56,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5A0232CD1CFCBC510095B5CB /* JVPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVPhotoBrowser.h; sourceTree = "<group>"; };
+		5A0232CE1CFCBC510095B5CB /* JVPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVPhotoBrowser.m; sourceTree = "<group>"; };
+		5A0232D01CFCBDC80095B5CB /* JVPhotoBrowserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVPhotoBrowserCell.h; sourceTree = "<group>"; };
+		5A0232D11CFCBDC80095B5CB /* JVPhotoBrowserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVPhotoBrowserCell.m; sourceTree = "<group>"; };
+		5A0232D31CFCC0970095B5CB /* JVImagePreviewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVImagePreviewer.h; sourceTree = "<group>"; };
+		5A0232D41CFCC0970095B5CB /* JVImagePreviewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVImagePreviewer.m; sourceTree = "<group>"; };
+		5A0232D71CFCC24B0095B5CB /* a004.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = a004.jpg; sourceTree = "<group>"; };
+		5A0232D81CFCC24B0095B5CB /* a005.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = a005.jpg; sourceTree = "<group>"; };
+		5A0232D91CFCC24B0095B5CB /* a006.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = a006.jpg; sourceTree = "<group>"; };
+		5A0232DA1CFCC24B0095B5CB /* a007.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = a007.jpg; sourceTree = "<group>"; };
+		5A0232DB1CFCC24B0095B5CB /* a008.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = a008.jpg; sourceTree = "<group>"; };
+		5A0232DC1CFCC24B0095B5CB /* a009.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = a009.jpg; sourceTree = "<group>"; };
+		5A0232DD1CFCC24B0095B5CB /* a010.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = a010.jpg; sourceTree = "<group>"; };
+		5A0232DE1CFCC24B0095B5CB /* a011.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = a011.jpg; sourceTree = "<group>"; };
 		5A0ACE2C1BD5F2E200BFA13F /* JVSlideViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVSlideViewContainer.h; sourceTree = "<group>"; };
 		5A0ACE2D1BD5F2E200BFA13F /* JVSlideViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVSlideViewContainer.m; sourceTree = "<group>"; };
+		5A3BDB251CFED5AE001B67B2 /* TestPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestPhotoBrowser.h; sourceTree = "<group>"; };
+		5A3BDB261CFED5AE001B67B2 /* TestPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestPhotoBrowser.m; sourceTree = "<group>"; };
+		5A3CAC051CFD397500D7D596 /* Demo6ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo6ViewController.h; sourceTree = "<group>"; };
+		5A3CAC061CFD397500D7D596 /* Demo6ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo6ViewController.m; sourceTree = "<group>"; };
+		5A3CAC081CFD9E0B00D7D596 /* a012.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = a012.png; sourceTree = "<group>"; };
 		5A3D6C1F1BC76574001931F2 /* Demo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1ViewController.h; sourceTree = "<group>"; };
 		5A3D6C201BC76574001931F2 /* Demo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
 		5A3D6C221BC76580001931F2 /* Demo2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo2ViewController.h; sourceTree = "<group>"; };
@@ -105,6 +138,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A0232D61CFCC24B0095B5CB /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5A3CAC081CFD9E0B00D7D596 /* a012.png */,
+				5A0232D71CFCC24B0095B5CB /* a004.jpg */,
+				5A0232D81CFCC24B0095B5CB /* a005.jpg */,
+				5A0232D91CFCC24B0095B5CB /* a006.jpg */,
+				5A0232DA1CFCC24B0095B5CB /* a007.jpg */,
+				5A0232DB1CFCC24B0095B5CB /* a008.jpg */,
+				5A0232DC1CFCC24B0095B5CB /* a009.jpg */,
+				5A0232DD1CFCC24B0095B5CB /* a010.jpg */,
+				5A0232DE1CFCC24B0095B5CB /* a011.jpg */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		5A8066911BBB9575004517D7 = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +190,11 @@
 				5A3D6C6D1BC90977001931F2 /* Demo4ViewController.m */,
 				5A5DB7991CE322330099EBA7 /* Demo5ViewController.h */,
 				5A5DB79A1CE322330099EBA7 /* Demo5ViewController.m */,
+				5A3CAC051CFD397500D7D596 /* Demo6ViewController.h */,
+				5A3CAC061CFD397500D7D596 /* Demo6ViewController.m */,
+				5A3BDB251CFED5AE001B67B2 /* TestPhotoBrowser.h */,
+				5A3BDB261CFED5AE001B67B2 /* TestPhotoBrowser.m */,
+				5A0232D61CFCC24B0095B5CB /* Images */,
 				5A8066A71BBB9575004517D7 /* Main.storyboard */,
 				5A8066AA1BBB9575004517D7 /* Images.xcassets */,
 				5A8066AC1BBB9575004517D7 /* LaunchScreen.xib */,
@@ -198,6 +252,12 @@
 				5A0ACE2D1BD5F2E200BFA13F /* JVSlideViewContainer.m */,
 				5A5DB7961CE30E740099EBA7 /* JVHorizontalPagedLayout.h */,
 				5A5DB7971CE30E740099EBA7 /* JVHorizontalPagedLayout.m */,
+				5A0232CD1CFCBC510095B5CB /* JVPhotoBrowser.h */,
+				5A0232CE1CFCBC510095B5CB /* JVPhotoBrowser.m */,
+				5A0232D01CFCBDC80095B5CB /* JVPhotoBrowserCell.h */,
+				5A0232D11CFCBDC80095B5CB /* JVPhotoBrowserCell.m */,
+				5A0232D31CFCC0970095B5CB /* JVImagePreviewer.h */,
+				5A0232D41CFCC0970095B5CB /* JVImagePreviewer.m */,
 			);
 			path = JVSlideKit;
 			sourceTree = "<group>";
@@ -281,9 +341,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A0232E31CFCC24B0095B5CB /* a008.jpg in Resources */,
+				5A0232E51CFCC24B0095B5CB /* a010.jpg in Resources */,
+				5A0232DF1CFCC24B0095B5CB /* a004.jpg in Resources */,
+				5A0232E01CFCC24B0095B5CB /* a005.jpg in Resources */,
 				5A8066A91BBB9575004517D7 /* Main.storyboard in Resources */,
+				5A0232E41CFCC24B0095B5CB /* a009.jpg in Resources */,
 				5A8066AE1BBB9575004517D7 /* LaunchScreen.xib in Resources */,
+				5A0232E11CFCC24B0095B5CB /* a006.jpg in Resources */,
+				5A0232E21CFCC24B0095B5CB /* a007.jpg in Resources */,
+				5A0232E61CFCC24B0095B5CB /* a011.jpg in Resources */,
 				5A8066AB1BBB9575004517D7 /* Images.xcassets in Resources */,
+				5A3CAC091CFD9E0B00D7D596 /* a012.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,12 +371,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A0ACE2E1BD5F2E200BFA13F /* JVSlideViewContainer.m in Sources */,
+				5A0232D51CFCC0970095B5CB /* JVImagePreviewer.m in Sources */,
+				5A0232D21CFCBDC80095B5CB /* JVPhotoBrowserCell.m in Sources */,
 				5ACBCA171BCB57CE00914B50 /* JVSlideView.m in Sources */,
 				5A3D6C211BC76574001931F2 /* Demo1ViewController.m in Sources */,
+				5A0232CF1CFCBC510095B5CB /* JVPhotoBrowser.m in Sources */,
 				5A8066A61BBB9575004517D7 /* ViewController.m in Sources */,
 				5ACBCA1D1BCB9DF600914B50 /* JVFlowLayout.m in Sources */,
+				5A3CAC071CFD397500D7D596 /* Demo6ViewController.m in Sources */,
 				5ACBCA141BCB57CE00914B50 /* JVSlideLoopView.m in Sources */,
 				5ACBCA121BCB57CE00914B50 /* JVBannerView.m in Sources */,
+				5A3BDB271CFED5AE001B67B2 /* TestPhotoBrowser.m in Sources */,
 				5AEF34EE1BCDF90D002FAC87 /* JVSlideContainer.m in Sources */,
 				5A8066A31BBB9575004517D7 /* AppDelegate.m in Sources */,
 				5A3D6C241BC76580001931F2 /* Demo2ViewController.m in Sources */,
