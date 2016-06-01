@@ -31,9 +31,9 @@
 //        self.imageView.backgroundColor = [UIColor greenColor];
         [self.scrollView addSubview:self.imageView];
         
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didDoubleTap:)];
-        tapGesture.numberOfTapsRequired = 2;
-        [self addGestureRecognizer:tapGesture];
+        UITapGestureRecognizer *doubleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didDoubleTap:)];
+        doubleTapGesture.numberOfTapsRequired = 2;
+        [self addGestureRecognizer:doubleTapGesture];
     }
     return self;
 }

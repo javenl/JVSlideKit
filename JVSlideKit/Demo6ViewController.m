@@ -36,8 +36,6 @@
     self.btn.frame = CGRectMake(50, 100, 200, 60);
     [self.view addSubview:self.btn];
     
-    
-    
     self.imagePreviewer = [[JVImagePreviewer alloc] init];
     self.imagePreviewer.frame = CGRectMake(0, 150, CGRectGetWidth(self.view.bounds), 300);
     self.imagePreviewer.backgroundColor = [UIColor grayColor];
@@ -75,16 +73,16 @@
     }
 
     TestPhotoBrowser *photoBrowser = [[TestPhotoBrowser alloc] init];
-    [photoBrowser setupItems:self.photos];
-    [photoBrowser moveToIndex:5];
+//    [photoBrowser setupItems:self.photos];
+//    [photoBrowser moveToIndex:5];
     [self.navigationController pushViewController:photoBrowser animated:YES];
 }
 
 - (void)didTapTest3 {
     TestPhotoBrowser *photoBrowser = [[TestPhotoBrowser alloc] init];
-    photoBrowser.delegate = self;
-    photoBrowser.dataSource = self;
-    [photoBrowser moveToIndex:3];
+//    photoBrowser.delegate = self;
+//    photoBrowser.dataSource = self;
+//    [photoBrowser moveToIndex:3];
     [self.navigationController pushViewController:photoBrowser animated:YES];
 }
 

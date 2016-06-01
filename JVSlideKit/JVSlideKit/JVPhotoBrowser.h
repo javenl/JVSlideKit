@@ -13,18 +13,20 @@
 
 @protocol JVPhotoBrowserDelegate <NSObject>
 
+@optional
 - (void)jvPhotoBrowser:(JVPhotoBrowser *)browser didStopAtIndex:(NSInteger)index;
 
 @end
 
 @protocol JVPhotoBrowserDataSource <NSObject>
 
+@optional
 - (NSInteger)numberOfItemsInJVPhotoBrowser:(JVPhotoBrowser *)browser;
 - (void)jvPhotoBrowser:(JVPhotoBrowser *)browser willShowPreviewer:(JVImagePreviewer *)previewer atIndex:(NSInteger)index;
 
 @end
 
-@interface JVPhotoBrowser : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
+@interface JVPhotoBrowser : UIView <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
 
 @property (nonatomic, weak) id<JVPhotoBrowserDelegate> delegate;
 @property (nonatomic, weak) id<JVPhotoBrowserDataSource> dataSource;

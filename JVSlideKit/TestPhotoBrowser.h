@@ -8,6 +8,6 @@
 
 #import "JVPhotoBrowser.h"
 
-@interface TestPhotoBrowser : JVPhotoBrowser
+@interface TestPhotoBrowser : UIViewController
 
 @end

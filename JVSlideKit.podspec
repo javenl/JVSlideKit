@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "JVSlideKit"
-  s.version      = "0.0.2"
+  s.version      = "0.0.3"
   s.platform     = :ios, "7.0"
   s.summary      = "A short description of JVSlideKit."
   s.description  = <<-DESC

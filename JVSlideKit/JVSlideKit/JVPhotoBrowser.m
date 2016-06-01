@@ -24,52 +24,38 @@ static NSString *kIentifier = @"JVPhotoBrowserCell";
 
 @implementation JVPhotoBrowser
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    
-    self.view.backgroundColor = [UIColor blackColor];
-    
-    self.flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    //        flowLayout.itemSize = CGSizeMake(111, 111);
-//    flowLayout.itemSize = self.view.bounds.size;
-    self.flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    self.flowLayout.minimumInteritemSpacing = 0;
-    self.flowLayout.minimumLineSpacing = 10;
-    self.flowLayout.itemSize = self.view.bounds.size;
-    
-    
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.flowLayout];
-    self.collectionView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds)+self.flowLayout.minimumLineSpacing, CGRectGetHeight(self.view.bounds));
-    self.collectionView.backgroundColor = [UIColor clearColor];
-    self.collectionView.pagingEnabled = YES;
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
-    self.collectionView.showsVerticalScrollIndicator = NO;
-    self.collectionView.showsHorizontalScrollIndicator = NO;
-    [self.collectionView registerClass:[JVPhotoBrowserCell class] forCellWithReuseIdentifier:kIentifier];
-    self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 0, self.flowLayout.minimumLineSpacing);
-    [self.view addSubview:self.collectionView];
-
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didSingleTap:)];
-    [self.view addGestureRecognizer:tapGesture];
-    
-}
-
-#pragma mark -
-
-- (void)didSingleTap:(UITapGestureRecognizer *)gesture {
-    if (self.navigationController.navigationBarHidden) {
-        [self.navigationController setNavigationBarHidden:NO animated:YES];
-        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:YES];
-    } else {
-        [self.navigationController setNavigationBarHidden:YES animated:YES];
-        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:YES];
+- (id)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.backgroundColor = [UIColor blackColor];
+//        self.backgroundColor = [UIColor yellowColor];
+        
+        self.flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        self.flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        self.flowLayout.minimumInteritemSpacing = 0;
+        self.flowLayout.minimumLineSpacing = 10;
+        
+        self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.flowLayout];
+        self.collectionView.backgroundColor = [UIColor clearColor];
+        self.collectionView.pagingEnabled = YES;
+        self.collectionView.delegate = self;
+        self.collectionView.dataSource = self;
+        self.collectionView.showsVerticalScrollIndicator = NO;
+        self.collectionView.showsHorizontalScrollIndicator = NO;
+        [self.collectionView registerClass:[JVPhotoBrowserCell class] forCellWithReuseIdentifier:kIentifier];
+        self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 0, self.flowLayout.minimumLineSpacing);
+        [self addSubview:self.collectionView];
     }
+    return self;
 }
 
-#pragma mark -
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.flowLayout.itemSize = self.bounds.size;
+    self.collectionView.frame = CGRectMake(0, 0, CGRectGetWidth(self.bounds)+self.flowLayout.minimumLineSpacing, CGRectGetHeight(self.bounds));
+}
+
+#pragma mark - Public
 
 - (void)setupItems:(NSArray *)items {
     self.items = [NSMutableArray arrayWithArray:items];
@@ -77,10 +63,8 @@ static NSString *kIentifier = @"JVPhotoBrowserCell";
 }
 
 - (void)moveToIndex:(NSInteger)index {
-    if (self.view) {
-        if (index < [self collectionView:self.collectionView numberOfItemsInSection:0]) {
-            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
-        }
+    if (index < [self collectionView:self.collectionView numberOfItemsInSection:0]) {
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
     }
 }
 
@@ -99,7 +83,6 @@ static NSString *kIentifier = @"JVPhotoBrowserCell";
     if (self.items) {
         [cell updateCellWithObject:self.items[indexPath.row]];
     }
-
     return cell;
 }
 
@@ -129,7 +112,7 @@ static NSString *kIentifier = @"JVPhotoBrowserCell";
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat pageWidth = self.flowLayout.itemSize.width + self.flowLayout.minimumLineSpacing;
-    NSInteger page = (scrollView.contentOffset.x + CGRectGetWidth(self.view.bounds) / 2) / pageWidth;
+    NSInteger page = (scrollView.contentOffset.x + CGRectGetWidth(self.bounds) / 2) / pageWidth;
     if (page != self.currentIndex) {
         //        NSLog(@"currenntIndex %@  page %@", @(self.currentIndex), @(page));
         self.currentIndex = page;
