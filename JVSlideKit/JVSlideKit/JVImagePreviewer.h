@@ -10,6 +10,7 @@
 
 @interface JVImagePreviewer : UIView
 
+@property (strong, nonatomic) UIImageView *imageView;
 @property (assign, nonatomic) NSInteger zoomScale;
 
 - (void)setPlaceHolderImage:(UIImage *)image;
