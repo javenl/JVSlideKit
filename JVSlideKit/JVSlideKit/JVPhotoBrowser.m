@@ -42,7 +42,11 @@ static NSString *kIentifier = @"JVPhotoBrowserCell";
         self.collectionView.dataSource = self;
         self.collectionView.showsVerticalScrollIndicator = NO;
         self.collectionView.showsHorizontalScrollIndicator = NO;
-        [self.collectionView registerClass:[JVPhotoBrowserCell class] forCellWithReuseIdentifier:kIentifier];
+//        if ([self.delegate respondsToSelector:@selector(customTableCell)]) {
+//            [self.collectionView registerClass:[self.delegate customTableCell] forCellWithReuseIdentifier:kIentifier];
+//        } else {
+//            [self.collectionView registerClass:[JVPhotoBrowserCell class] forCellWithReuseIdentifier:kIentifier];
+//        }
         self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 0, self.flowLayout.minimumLineSpacing);
         [self addSubview:self.collectionView];
     }
@@ -68,6 +72,22 @@ static NSString *kIentifier = @"JVPhotoBrowserCell";
     }
 }
 
+- (void)insertItemAtIndex:(NSInteger)index {
+    [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
+}
+
+- (void)removeItemAtIndex:(NSInteger)index {
+    [self.collectionView deleteItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
+}
+
+- (void)reloadItemAtIndex:(NSInteger)index {
+    [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
+}
+
+- (void)reloadData {
+    [self.collectionView reloadData];
+}
+
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -87,8 +107,8 @@ static NSString *kIentifier = @"JVPhotoBrowserCell";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(JVPhotoBrowserCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.delegate respondsToSelector:@selector(jvPhotoBrowser:willShowPreviewer:atIndex:)]) {
-        [self.dataSource jvPhotoBrowser:self willShowPreviewer:cell.imagePreviwer atIndex:indexPath.row];
+    if ([self.delegate respondsToSelector:@selector(jvPhotoBrowser:willShowCell:atIndex:)]) {
+        [self.dataSource jvPhotoBrowser:self willShowCell:cell atIndex:indexPath.row];
     }
 }
 
@@ -119,6 +139,15 @@ static NSString *kIentifier = @"JVPhotoBrowserCell";
 //        if ([self.delegate respondsToSelector:@selector(slideView:didChangeCenterIndex:)]) {
 //            [self.delegate slideView:self didChangeCenterIndex:self.currentIndex];
 //        }
+    }
+}
+
+#pragma mark - Property
+
+- (void)setDelegate:(id<JVPhotoBrowserDelegate>)delegate {
+    _delegate = delegate;
+    if ([self.delegate respondsToSelector:@selector(customTableCell)]) {
+        [self.collectionView registerClass:[self.delegate customTableCell] forCellWithReuseIdentifier:kIentifier];
     }
 }
 

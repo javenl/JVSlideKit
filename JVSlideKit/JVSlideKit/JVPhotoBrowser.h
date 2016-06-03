@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "JVImagePreviewer.h"
+#import "JVPhotoBrowserCell.h"
 
 @class JVPhotoBrowser;
 
@@ -15,6 +16,7 @@
 
 @optional
 - (void)jvPhotoBrowser:(JVPhotoBrowser *)browser didStopAtIndex:(NSInteger)index;
+- (Class)customTableCell;
 
 @end
 
@@ -22,7 +24,7 @@
 
 @optional
 - (NSInteger)numberOfItemsInJVPhotoBrowser:(JVPhotoBrowser *)browser;
-- (void)jvPhotoBrowser:(JVPhotoBrowser *)browser willShowPreviewer:(JVImagePreviewer *)previewer atIndex:(NSInteger)index;
+- (void)jvPhotoBrowser:(JVPhotoBrowser *)browser willShowCell:(JVPhotoBrowserCell *)cell atIndex:(NSInteger)index;
 
 @end
 
@@ -34,5 +36,10 @@
 
 - (void)setupItems:(NSArray *)items;
 - (void)moveToIndex:(NSInteger)index;
+
+- (void)insertItemAtIndex:(NSInteger)index;
+- (void)removeItemAtIndex:(NSInteger)index;
+- (void)reloadItemAtIndex:(NSInteger)index;
+- (void)reloadData;
 
 @end
