@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5A0232CF1CFCBC510095B5CB /* JVPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0232CE1CFCBC510095B5CB /* JVPhotoBrowser.m */; };
 		5A0232D21CFCBDC80095B5CB /* JVPhotoBrowserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0232D11CFCBDC80095B5CB /* JVPhotoBrowserCell.m */; };
 		5A0232D51CFCC0970095B5CB /* JVImagePreviewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0232D41CFCC0970095B5CB /* JVImagePreviewer.m */; };
 		5A0232DF1CFCC24B0095B5CB /* a004.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5A0232D71CFCC24B0095B5CB /* a004.jpg */; };
@@ -28,6 +27,7 @@
 		5A3D6C6E1BC90977001931F2 /* Demo4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3D6C6D1BC90977001931F2 /* Demo4ViewController.m */; };
 		5A5DB7981CE30E740099EBA7 /* JVHorizontalPagedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5DB7971CE30E740099EBA7 /* JVHorizontalPagedLayout.m */; };
 		5A5DB79B1CE322330099EBA7 /* Demo5ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5DB79A1CE322330099EBA7 /* Demo5ViewController.m */; };
+		5A770FB11D0D07CB00458551 /* JVPhotoBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A770FB01D0D07CB00458551 /* JVPhotoBrowserView.m */; };
 		5A8066A01BBB9575004517D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A80669F1BBB9575004517D7 /* main.m */; };
 		5A8066A31BBB9575004517D7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A8066A21BBB9575004517D7 /* AppDelegate.m */; };
 		5A8066A61BBB9575004517D7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A8066A51BBB9575004517D7 /* ViewController.m */; };
@@ -56,8 +56,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5A0232CD1CFCBC510095B5CB /* JVPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVPhotoBrowser.h; sourceTree = "<group>"; };
-		5A0232CE1CFCBC510095B5CB /* JVPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVPhotoBrowser.m; sourceTree = "<group>"; };
 		5A0232D01CFCBDC80095B5CB /* JVPhotoBrowserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVPhotoBrowserCell.h; sourceTree = "<group>"; };
 		5A0232D11CFCBDC80095B5CB /* JVPhotoBrowserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVPhotoBrowserCell.m; sourceTree = "<group>"; };
 		5A0232D31CFCC0970095B5CB /* JVImagePreviewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVImagePreviewer.h; sourceTree = "<group>"; };
@@ -89,6 +87,8 @@
 		5A5DB7971CE30E740099EBA7 /* JVHorizontalPagedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVHorizontalPagedLayout.m; sourceTree = "<group>"; };
 		5A5DB7991CE322330099EBA7 /* Demo5ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo5ViewController.h; sourceTree = "<group>"; };
 		5A5DB79A1CE322330099EBA7 /* Demo5ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo5ViewController.m; sourceTree = "<group>"; };
+		5A770FAF1D0D07CB00458551 /* JVPhotoBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVPhotoBrowserView.h; sourceTree = "<group>"; };
+		5A770FB01D0D07CB00458551 /* JVPhotoBrowserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVPhotoBrowserView.m; sourceTree = "<group>"; };
 		5A80669A1BBB9575004517D7 /* JVSlideKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JVSlideKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A80669E1BBB9575004517D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A80669F1BBB9575004517D7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -252,8 +252,8 @@
 				5A0ACE2D1BD5F2E200BFA13F /* JVSlideViewContainer.m */,
 				5A5DB7961CE30E740099EBA7 /* JVHorizontalPagedLayout.h */,
 				5A5DB7971CE30E740099EBA7 /* JVHorizontalPagedLayout.m */,
-				5A0232CD1CFCBC510095B5CB /* JVPhotoBrowser.h */,
-				5A0232CE1CFCBC510095B5CB /* JVPhotoBrowser.m */,
+				5A770FAF1D0D07CB00458551 /* JVPhotoBrowserView.h */,
+				5A770FB01D0D07CB00458551 /* JVPhotoBrowserView.m */,
 				5A0232D01CFCBDC80095B5CB /* JVPhotoBrowserCell.h */,
 				5A0232D11CFCBDC80095B5CB /* JVPhotoBrowserCell.m */,
 				5A0232D31CFCC0970095B5CB /* JVImagePreviewer.h */,
@@ -375,9 +375,9 @@
 				5A0232D21CFCBDC80095B5CB /* JVPhotoBrowserCell.m in Sources */,
 				5ACBCA171BCB57CE00914B50 /* JVSlideView.m in Sources */,
 				5A3D6C211BC76574001931F2 /* Demo1ViewController.m in Sources */,
-				5A0232CF1CFCBC510095B5CB /* JVPhotoBrowser.m in Sources */,
 				5A8066A61BBB9575004517D7 /* ViewController.m in Sources */,
 				5ACBCA1D1BCB9DF600914B50 /* JVFlowLayout.m in Sources */,
+				5A770FB11D0D07CB00458551 /* JVPhotoBrowserView.m in Sources */,
 				5A3CAC071CFD397500D7D596 /* Demo6ViewController.m in Sources */,
 				5ACBCA141BCB57CE00914B50 /* JVSlideLoopView.m in Sources */,
 				5ACBCA121BCB57CE00914B50 /* JVBannerView.m in Sources */,

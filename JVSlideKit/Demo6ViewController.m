@@ -7,7 +7,7 @@
 //
 
 #import "Demo6ViewController.h"
-#import "JVPhotoBrowser.h"
+#import "JVPhotoBrowserView.h"
 #import "JVImagePreviewer.h"
 #import "TestPhotoBrowser.h"
 
@@ -88,11 +88,11 @@
 
 #pragma mark - JVPhotoBrowserDataSource
 
-- (NSInteger)numberOfItemsInJVPhotoBrowser:(JVPhotoBrowser *)browser {
+- (NSInteger)numberOfItemsInJVPhotoBrowser:(JVPhotoBrowserView *)browser {
     return 5;
 }
 
-- (void)jvPhotoBrowser:(JVPhotoBrowser *)browser willShowPreviewer:(JVImagePreviewer *)previewer atIndex:(NSInteger)index {
+- (void)jvPhotoBrowser:(JVPhotoBrowserView *)browser willShowPreviewer:(JVImagePreviewer *)previewer atIndex:(NSInteger)index {
     [previewer setPlaceHolderImage:[UIImage imageNamed:@"a004.jpg"]];
 }
 

@@ -6,7 +6,7 @@
 //
 //
 
-#import "JVPhotoBrowser.h"
+#import "JVPhotoBrowserView.h"
 
 @interface TestPhotoBrowser : UIViewController
 

@@ -10,12 +10,12 @@
 #import "JVImagePreviewer.h"
 #import "JVPhotoBrowserCell.h"
 
-@class JVPhotoBrowser;
+@class JVPhotoBrowserView;
 
 @protocol JVPhotoBrowserDelegate <NSObject>
 
 @optional
-- (void)jvPhotoBrowser:(JVPhotoBrowser *)browser didStopAtIndex:(NSInteger)index;
+- (void)jvPhotoBrowser:(JVPhotoBrowserView *)browser didStopAtIndex:(NSInteger)index;
 - (Class)customTableCell;
 
 @end
@@ -23,12 +23,12 @@
 @protocol JVPhotoBrowserDataSource <NSObject>
 
 @optional
-- (NSInteger)numberOfItemsInJVPhotoBrowser:(JVPhotoBrowser *)browser;
-- (void)jvPhotoBrowser:(JVPhotoBrowser *)browser willShowCell:(JVPhotoBrowserCell *)cell atIndex:(NSInteger)index;
+- (NSInteger)numberOfItemsInJVPhotoBrowser:(JVPhotoBrowserView *)browser;
+- (void)jvPhotoBrowser:(JVPhotoBrowserView *)browser willShowCell:(JVPhotoBrowserCell *)cell atIndex:(NSInteger)index;
 
 @end
 
-@interface JVPhotoBrowser : UIView <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
+@interface JVPhotoBrowserView : UIView <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
 
 @property (nonatomic, weak) id<JVPhotoBrowserDelegate> delegate;
 @property (nonatomic, weak) id<JVPhotoBrowserDataSource> dataSource;

@@ -6,10 +6,10 @@
 //
 //
 
-#import "JVPhotoBrowser.h"
+#import "JVPhotoBrowserView.h"
 #import "JVPhotoBrowserCell.h"
 
-@interface JVPhotoBrowser () 
+@interface JVPhotoBrowserView () 
 
 @property (strong, nonatomic) UICollectionViewFlowLayout *flowLayout;
 @property (strong, nonatomic) UICollectionView *collectionView;
@@ -22,7 +22,7 @@
 
 static NSString *kIentifier = @"JVPhotoBrowserCell";
 
-@implementation JVPhotoBrowser
+@implementation JVPhotoBrowserView
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];

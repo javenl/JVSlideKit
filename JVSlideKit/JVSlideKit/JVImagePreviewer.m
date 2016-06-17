@@ -19,6 +19,8 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        self.backgroundColor = [UIColor blackColor];
+        
         self.scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
         self.scrollView.minimumZoomScale = 1;
         self.scrollView.maximumZoomScale = 3;
@@ -33,6 +35,11 @@
         UITapGestureRecognizer *doubleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didDoubleTap:)];
         doubleTapGesture.numberOfTapsRequired = 2;
         [self addGestureRecognizer:doubleTapGesture];
+        
+        UITapGestureRecognizer *singeTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didSingleTap:)];
+        singeTapGesture.numberOfTapsRequired = 1;
+        [singeTapGesture requireGestureRecognizerToFail:doubleTapGesture];
+        [self addGestureRecognizer:singeTapGesture];
     }
     return self;
 }
@@ -43,6 +50,12 @@
 }
 
 #pragma mark - Event
+
+- (void)didSingleTap:(UITapGestureRecognizer *)gesture {
+    if ([self.delegate respondsToSelector:@selector(didSingleTapInJVImagePreviewer:)]) {
+        [self.delegate didSingleTapInJVImagePreviewer:self];
+    }
+}
 
 - (void)didDoubleTap:(UITapGestureRecognizer *)gesture {
     CGPoint touchPoint = [gesture locationInView:self];

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JVPhotoBrowser.h"
+#import "JVPhotoBrowserView.h"
 
 @interface Demo6ViewController : UIViewController
 

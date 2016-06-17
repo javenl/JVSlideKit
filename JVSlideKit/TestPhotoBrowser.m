@@ -7,11 +7,11 @@
 //
 
 #import "TestPhotoBrowser.h"
-#import "JVPhotoBrowser.h"
+#import "JVPhotoBrowserView.h"
 
 @interface TestPhotoBrowser () <JVPhotoBrowserDataSource, JVPhotoBrowserDelegate>
 
-@property (strong, nonatomic) JVPhotoBrowser *photoBrowser;
+@property (strong, nonatomic) JVPhotoBrowserView *photoBrowser;
 //@property (strong, nonatomic) NSMutableArray *items;
 
 @end
@@ -28,7 +28,7 @@
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    self.photoBrowser = [[JVPhotoBrowser alloc] initWithFrame:self.view.bounds];
+    self.photoBrowser = [[JVPhotoBrowserView alloc] initWithFrame:self.view.bounds];
     self.photoBrowser.delegate = self;
     self.photoBrowser.dataSource = self;
     [self.view addSubview:self.photoBrowser];
@@ -60,17 +60,17 @@
 
 #pragma mark - JVPhotoBrowserDataSource
 
-- (NSInteger)numberOfItemsInJVPhotoBrowser:(JVPhotoBrowser *)browser {
+- (NSInteger)numberOfItemsInJVPhotoBrowser:(JVPhotoBrowserView *)browser {
     return 5;
 }
 
-- (void)jvPhotoBrowser:(JVPhotoBrowser *)browser willShowPreviewer:(JVImagePreviewer *)previewer atIndex:(NSInteger)index {
+- (void)jvPhotoBrowser:(JVPhotoBrowserView *)browser willShowPreviewer:(JVImagePreviewer *)previewer atIndex:(NSInteger)index {
     [previewer setPlaceHolderImage:[UIImage imageNamed:@"a004.jpg"]];
 }
 
 #pragma mark - JVPhotoBrowserDelegate
 
-- (void)jvPhotoBrowser:(JVPhotoBrowser *)browser didStopAtIndex:(NSInteger)index {
+- (void)jvPhotoBrowser:(JVPhotoBrowserView *)browser didStopAtIndex:(NSInteger)index {
     self.title = [NSString stringWithFormat:@"%@ / %@", @(index+1), @(5)];
 }
 

@@ -8,8 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class JVImagePreviewer;
+
+@protocol JVImagePreviewerDelegate <NSObject>
+
+@optional
+- (void)didSingleTapInJVImagePreviewer:(JVImagePreviewer *)previewer;
+
+@end
+
 @interface JVImagePreviewer : UIView
 
+@property (weak, nonatomic) id <JVImagePreviewerDelegate> delegate;
 @property (strong, nonatomic) UIImageView *imageView;
 @property (assign, nonatomic) NSInteger zoomScale;
 
